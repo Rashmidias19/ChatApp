@@ -14,9 +14,10 @@ public class LoginFormController {
     public AnchorPane dashboardPane;
 
     public void loginBtnOnAction(ActionEvent event) throws IOException {
-        Stage stage = (Stage) dashboardPane.getScene().getWindow();
-        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/ChatFormForm.fxml"))));
-        stage.setTitle("VETCLOUD");
+        String name=txtUserName.getText();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("view/ChatForm.fxml"))));
+        stage.setTitle(name+" Room");
         stage.centerOnScreen();
         stage.show();
     }
