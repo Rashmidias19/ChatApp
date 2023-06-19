@@ -1,22 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="532.0" prefWidth="489.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ServerFormController">
+<AnchorPane fx:id="dashboardPane" prefHeight="567.0" prefWidth="493.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ServerFormController">
    <children>
-      <Label layoutX="205.0" layoutY="22.0" prefHeight="38.0" prefWidth="80.0" text="Server">
+      <ImageView fitHeight="567.0" fitWidth="493.0">
+         <image>
+            <Image url="@../../../../../Work/src/main/resources/img/pexels-codioful-(formerly-gradienta)-7135121.jpg" />
+         </image>
+      </ImageView>
+      <TextField fx:id="txtMessage" layoutX="30.0" layoutY="501.0" prefHeight="52.0" prefWidth="320.0" />
+      <ImageView fx:id="imgCamera" fitHeight="27.0" fitWidth="25.0" layoutX="321.0" layoutY="512.0" onMouseClicked="#imgCamaraOnAction">
+         <image>
+            <Image url="@../../../../../Work/src/main/resources/img/photo-camera-interface-symbol-for-button.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="btnSend" layoutX="369.0" layoutY="510.0" mnemonicParsing="false" onAction="#sendBtnOnAction" prefHeight="35.0" prefWidth="95.0" style="-fx-background-color: #2c3e50;" text="Send" textFill="#cdc4c4">
          <font>
-            <Font size="26.0" />
+            <Font name="System Bold" size="16.0" />
          </font>
-      </Label>
-      <TextArea fx:id="txtArea" layoutX="29.0" layoutY="76.0" prefHeight="373.0" prefWidth="432.0" />
-      <TextField fx:id="txtMessage" layoutX="29.0" layoutY="464.0" prefHeight="51.0" prefWidth="302.0" />
-      <Button fx:id="btnSend" layoutX="357.0" layoutY="477.0" mnemonicParsing="false" onAction="#btnSendOnAction" prefHeight="25.0" prefWidth="92.0" text="Send" />
+      </Button>
+      <ImageView fx:id="imgImoj" fitHeight="24.0" fitWidth="25.0" layoutX="288.0" layoutY="514.0" onMouseClicked="#emojiBtnOnAction">
+         <image>
+            <Image url="@../../../../../Work/src/main/resources/img/smile.png" />
+         </image>
+      </ImageView>
+      <TextArea fx:id="txtArea" layoutX="31.0" layoutY="38.0" prefHeight="437.0" prefWidth="435.0" />
    </children>
 </AnchorPane>

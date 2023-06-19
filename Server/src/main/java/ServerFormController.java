@@ -3,6 +3,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -14,16 +17,24 @@ public class ServerFormController {
     public TextArea txtArea;
     public TextField txtMessage;
     public Button btnSend;
+    public ImageView imgCamera;
+    public AnchorPane dashboardPane;
     private ServerSocket serverSocket;
     private Socket socket;
     private DataInputStream inputStream;
     private DataOutputStream outputStream;
 
+    public String name=LoginFormController.name;
+
     private  String message="";
     private  String reply = "";
 
-    @FXML
-    void initialize(){
+    public void initialize() {
+        CheckClient();
+    }
+
+
+   private void CheckClient(){
 
         Thread initialThrade = new Thread(() -> {
             try {
@@ -56,5 +67,14 @@ public class ServerFormController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void sendBtnOnAction(ActionEvent event) {
+    }
+
+    public void emojiBtnOnAction(MouseEvent mouseEvent) {
+    }
+
+    public void imgCamaraOnAction(MouseEvent mouseEvent) {
     }
 }
