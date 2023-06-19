@@ -8,7 +8,11 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Server" />
         <module name="Client" />
+        <module name="Work" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Main" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>
