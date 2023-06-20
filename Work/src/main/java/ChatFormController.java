@@ -6,6 +6,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -16,6 +17,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -32,18 +34,19 @@ public class ChatFormController extends Thread implements Initializable {
     public Button btnSend;
     public ImageView imgImoj;
     public ImageView imgCamera;
+    public Label lblName;
     private Socket socket;
     private DataInputStream inputStream;
     private DataOutputStream outputStream;
     BufferedReader reader;
     PrintWriter writer;
-
+    private File filePath;
     private String message = "";
     private String reply = "";
 
     public void connectSocket() {
         try {
-            socket = new Socket("localhost", 3030);
+            socket = new Socket("localhost", 8000);
             System.out.println("socket is connected with the server");
             reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             writer = new PrintWriter(socket.getOutputStream(), true);
@@ -90,17 +93,21 @@ public class ChatFormController extends Thread implements Initializable {
                     imageView.setFitHeight(70);
 
                     HBox hBox = new HBox(10);
-                    hBox.setAlignment(Pos.BOTTOM_RIGHT);
+                    hBox.setAlignment(Pos.BOTTOM_RIGHT);//bottom-right
+                    //vBox.setAlignment(Pos.BOTTOM_LEFT);
+                    //hBox.setAlignment(Pos.CENTER_LEFT);
 
-                    if (!cmd.equalsIgnoreCase(LoginFormController.name)) {
-                        vBox.setAlignment(Pos.TOP_LEFT);
-                        hBox.setAlignment(Pos.CENTER_LEFT);
+                 ///   hBox.getChildren().add(imageView);
+
+                    if (!cmd.equalsIgnoreCase(/*LoginFormController.name*/lblName.getText())) {
+                        vBox.setAlignment(Pos.BOTTOM_LEFT);//top left
+                        hBox.setAlignment(Pos.CENTER_LEFT);//center right
 
                        Text text1 = new Text("  " + cmd + " :");
                         hBox.getChildren().add(text1);
                         hBox.getChildren().add(imageView);
                     } else {
-                        hBox.setAlignment(Pos.BOTTOM_RIGHT);
+                        hBox.setAlignment(Pos.BOTTOM_RIGHT);//bottom right
                         hBox.getChildren().add(imageView);
                         Text text1 = new Text(": Me ");
                         hBox.getChildren().add(text1);
@@ -111,7 +118,7 @@ public class ChatFormController extends Thread implements Initializable {
                 } else {
                     TextFlow tempTextFlow = new TextFlow();
 
-                    if (!cmd.equalsIgnoreCase(LoginFormController.name + ":")) {
+                    if (!cmd.equalsIgnoreCase(/*LoginFormController.name*/lblName.getText() + ":")) {
                         Text name = new Text(cmd + " ");
                         name.getStyleClass().add("name");
                         tempTextFlow.getChildren().add(name);
@@ -126,7 +133,7 @@ public class ChatFormController extends Thread implements Initializable {
                     HBox hBox = new HBox(10);
                     hBox.setPadding(new Insets(5));
 
-                    if (!cmd.equalsIgnoreCase(LoginFormController.name+ ":")) {
+                    if (!cmd.equalsIgnoreCase(/*LoginFormController.name*/lblName.getText()+ ":")) {
                         vBox.setAlignment(Pos.TOP_LEFT);
                         hBox.setAlignment(Pos.CENTER_LEFT);
                         hBox.getChildren().add(textFlow);
@@ -142,7 +149,7 @@ public class ChatFormController extends Thread implements Initializable {
                 }
 
                 System.out.println(fullMsg);
-                if (cmd.equalsIgnoreCase(LoginFormController.name + ":")) {
+                if (cmd.equalsIgnoreCase(/*LoginFormController.name*/lblName.getText() + ":")) {
                     continue;
                 } else if (fullMsg.toString().equalsIgnoreCase("bye")) {
                     break;
@@ -155,13 +162,14 @@ public class ChatFormController extends Thread implements Initializable {
             e.printStackTrace();
         }
 
+
     }
 
 
 
     public void sendBtnOnAction(ActionEvent event) throws IOException {
         String msg=txtMessage.getText();
-        writer.println(LoginFormController.name+" :"+msg);
+        writer.println(lblName.getText()+" :"+msg);
         HBox hBox=new HBox();
         hBox.setAlignment(Pos.CENTER_RIGHT);
         hBox.setPadding(new Insets(5,5,5,10));
@@ -180,33 +188,24 @@ public class ChatFormController extends Thread implements Initializable {
         if((msg.equalsIgnoreCase("BYE"))||(msg.equalsIgnoreCase("Logout"))){
             System.exit(0);
         }
+
+
+
     }
 
     public void imgCamaraOnAction(MouseEvent mouseEvent) throws MalformedURLException {
-        Stage stage=(Stage) ((Node)mouseEvent.getSource()).getScene().getWindow();
-        FileChooser fileChooser=new FileChooser();
-        fileChooser.setTitle("Choose an image");
-        File file=fileChooser.showOpenDialog(stage);
-        if(file!=null){
-            writer.println(LoginFormController.name+": "+file.toURI().toURL());
+
+        try {
+            Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Open Image");
+            this.filePath = fileChooser.showOpenDialog(stage);
+            writer.println(LoginFormController.name + " " + "img" + filePath.getPath());
+            writer.flush();
+        } catch (NullPointerException e) {
+            System.out.println("Image is not Selected!");
         }
-        if(file!=null){
-            System.out.println("file was selected");
-            URL url=file.toURI().toURL();
-            System.out.println(url);
-            HBox hBox=new HBox();
-            hBox.setAlignment(Pos.CENTER_RIGHT);
-            hBox.setPadding(new Insets(5,10,5,5));
-            ImageView imageView=new ImageView();
-            Image image=new Image(String.valueOf(url));
-            imageView.setImage(image);
-            imageView.setFitWidth(75);
-            imageView.setFitHeight(75);
-            VBox vBox1=new VBox(imageView);
-            vBox1.setAlignment(Pos.CENTER_RIGHT);
-            vBox1.setPadding(new Insets(5, 10, 5, 5));
-            vBox.getChildren().add(vBox1);
-        }
+
     }
 
     public void emojiBtnOnAction(MouseEvent mouseEvent) {
@@ -215,6 +214,7 @@ public class ChatFormController extends Thread implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         connectSocket();
+        lblName.setText(LoginFormController.name);
 
     }
 }
