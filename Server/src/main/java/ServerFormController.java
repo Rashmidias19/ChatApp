@@ -38,7 +38,7 @@ public class ServerFormController {
 
         Thread initialThrade = new Thread(() -> {
             try {
-                serverSocket=new ServerSocket(3030);
+                serverSocket=new ServerSocket(8000);
                 txtArea.appendText("sever started !");
                 socket=serverSocket.accept();
                 txtArea.appendText("client accepted !");

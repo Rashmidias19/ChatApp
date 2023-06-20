@@ -11,10 +11,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane fx:id="dashboardPane" prefHeight="567.0" prefWidth="493.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ChatFormController">
+<AnchorPane fx:id="dashboardPane" prefHeight="572.0" prefWidth="493.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ChatFormController">
    <children>
-      <ImageView fitHeight="567.0" fitWidth="493.0">
+      <ImageView fitHeight="572.0" fitWidth="493.0">
          <image>
             <Image url="@../img/pexels-codioful-(formerly-gradienta)-7135121.jpg" />
          </image>
@@ -35,7 +34,7 @@
             <Image url="@../img/smile.png" />
          </image>
       </ImageView>
-      <ScrollPane layoutX="32.0" layoutY="76.0" prefHeight="406.0" prefWidth="434.0">
+      <ScrollPane layoutX="32.0" layoutY="76.0" prefHeight="356.0" prefWidth="434.0">
          <content>
             <HBox prefHeight="72.0" prefWidth="429.0">
                <children>
@@ -49,5 +48,10 @@
             <Font name="System Bold" size="23.0" />
          </font>
       </Label>
+      <ScrollPane layoutX="32.0" layoutY="436.0" prefHeight="62.0" prefWidth="434.0">
+         <content>
+            <VBox fx:id="emoji" prefHeight="200.0" prefWidth="418.0" />
+         </content>
+      </ScrollPane>
    </children>
 </AnchorPane>
