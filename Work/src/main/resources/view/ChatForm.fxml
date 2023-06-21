@@ -43,9 +43,9 @@
             </HBox>
          </content>
       </ScrollPane>
-      <Label fx:id="lblName" layoutX="32.0" layoutY="14.0" prefHeight="52.0" prefWidth="232.0">
+      <Label fx:id="lblName" layoutX="32.0" layoutY="14.0" prefHeight="52.0" prefWidth="232.0" textFill="#685454">
          <font>
-            <Font name="System Bold" size="23.0" />
+            <Font name="System Bold Italic" size="23.0" />
          </font>
       </Label>
       <AnchorPane fx:id="emojiPane" layoutX="292.0" layoutY="435.0" prefHeight="75.0" prefWidth="146.0" style="-fx-background-color: #37474f;">
@@ -92,5 +92,15 @@
             </ImageView>
          </children>
       </AnchorPane>
+      <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="365.0" layoutY="20.0">
+         <image>
+            <Image url="@../img/call.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="426.0" layoutY="20.0">
+         <image>
+            <Image url="@../img/video.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
