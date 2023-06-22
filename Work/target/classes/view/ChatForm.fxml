@@ -34,7 +34,7 @@
             <Image url="@../img/smile.png" />
          </image>
       </ImageView>
-      <ScrollPane layoutX="32.0" layoutY="76.0" prefHeight="356.0" prefWidth="434.0">
+      <ScrollPane layoutX="32.0" layoutY="69.0" prefHeight="416.0" prefWidth="434.0">
          <content>
             <HBox prefHeight="72.0" prefWidth="429.0">
                <children>
@@ -43,15 +43,64 @@
             </HBox>
          </content>
       </ScrollPane>
-      <Label fx:id="lblName" layoutX="32.0" layoutY="14.0" prefHeight="52.0" prefWidth="232.0">
+      <Label fx:id="lblName" layoutX="32.0" layoutY="14.0" prefHeight="52.0" prefWidth="232.0" textFill="#685454">
          <font>
-            <Font name="System Bold" size="23.0" />
+            <Font name="System Bold Italic" size="23.0" />
          </font>
       </Label>
-      <ScrollPane layoutX="32.0" layoutY="436.0" prefHeight="62.0" prefWidth="434.0">
-         <content>
-            <VBox fx:id="emoji" prefHeight="200.0" prefWidth="418.0" />
-         </content>
-      </ScrollPane>
+      <AnchorPane fx:id="emojiPane" layoutX="292.0" layoutY="435.0" prefHeight="75.0" prefWidth="146.0" style="-fx-background-color: #37474f;">
+         <children>
+            <ImageView fitHeight="30.0" fitWidth="30.0" onMouseClicked="#emoji1OnAction">
+               <image>
+                  <Image url="@../img/laugh.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="37.0" onMouseClicked="#emoji2OnAction">
+               <image>
+                  <Image url="@../img/laughing.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="73.0" onMouseClicked="#emoji3OnAction">
+               <image>
+                  <Image url="@../img/vf.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="110.0" onMouseClicked="#emoji4OnAction">
+               <image>
+                  <Image url="@../img/sad.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutY="37.0" onMouseClicked="#emoji5OnAction">
+               <image>
+                  <Image url="@../img/wow.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="37.0" layoutY="37.0" onMouseClicked="#emoji6OnAction">
+               <image>
+                  <Image url="@../img/smile.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="110.0" layoutY="37.0" onMouseClicked="#emoji8OnAction">
+               <image>
+                  <Image url="@../img/dfsdg.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="73.0" layoutY="37.0" onMouseClicked="#emoji7OnAction">
+               <image>
+                  <Image url="@../img/emoji.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="365.0" layoutY="20.0">
+         <image>
+            <Image url="@../img/call.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="426.0" layoutY="20.0">
+         <image>
+            <Image url="@../img/video.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
